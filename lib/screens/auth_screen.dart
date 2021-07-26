@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_chat_app_firebase/widgets/auth/auth_form.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -55,18 +54,6 @@ class _AuthScreenState extends State<AuthScreen> {
         'username': username,
         'email': email,
         'image_url': url
-      });
-    } on PlatformException catch (error) {
-      var message = 'An error occurred, please check your credential';
-      if (error.message != null) {
-        message = error.message!;
-      }
-      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
-        content: Text(message),
-        backgroundColor: Theme.of(ctx).errorColor,
-      ));
-      setState(() {
-        isLoading = false;
       });
     } catch (error) {
       var message = 'An error occurred, please check your credential';
